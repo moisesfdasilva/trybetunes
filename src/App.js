@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrouserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Search from './pages/Search';
@@ -13,17 +13,17 @@ import NotFound from './pages/NotFound';
 class App extends React.Component {
   render() {
     return (
-      <BrouserRouter>
+      <BrowserRouter>
         <Switch>
+          <Route exact path="/" component={ Login } />
           <Route path="/search" component={ Search } />
           <Route path="/album/:id" render={ (props) => <Album { ...props } /> } />
           <Route path="/favorites" component={ Favorites } />
-          <Route path="/profile" component={ Profile } />
+          <Route exact path="/profile" component={ Profile } />
           <Route path="/profile/edit" component={ ProfileEdit } />
-          <Route exact path="/" component={ Login } />
           <Route path="*" component={ NotFound } />
         </Switch>
-      </BrouserRouter>
+      </BrowserRouter>
     );
   }
 }
