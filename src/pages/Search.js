@@ -1,11 +1,16 @@
 import React from 'react';
 import Header from '../components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends React.Component {
   state = {
     isSearchButtonDisabled: true,
-    // search: '',
+    searchValue: '',
   };
+
+  componentDidMount() {
+    // aaaaa
+  }
 
   searchTextInput = (action) => {
     const searchText = action.target.value;
@@ -13,20 +18,28 @@ class Search extends React.Component {
     if (searchText.length >= maxsearchText) {
       this.setState({
         isSearchButtonDisabled: false,
-        // search: loginName,
+        searchValue: searchText,
       });
     } else {
       this.setState({
         isSearchButtonDisabled: true,
-        // search: loginName,
+        searchValue: searchText,
       });
     }
   };
 
+  searchButton = () => {
+    const { searchValue } = this.state;
+    const searchArist = searchValue;
+    this.setState({
+      isSearchButtonDisabled: false,
+      searchValue: '',
+    });
+    searchAlbumsAPI(searchArist);
+  };
+
   render() {
-    const { isSearchButtonDisabled,
-      // search,
-    } = this.state;
+    const { isSearchButtonDisabled } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -40,7 +53,7 @@ class Search extends React.Component {
             type="button"
             data-testid="search-artist-button"
             disabled={ isSearchButtonDisabled }
-            // onClick={ this.createUser({ name: user }) }
+            onClick={ this.searchButton }
           >
             Pesquisar
           </button>

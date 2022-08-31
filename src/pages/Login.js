@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { createUser } from '../services/userAPI';
 
 class Login extends React.Component {
   state = {
     isLoginButtonDisabled: true,
     user: '',
+    loading: false,
   };
 
   loginNameInput = (action) => {
@@ -23,18 +25,24 @@ class Login extends React.Component {
     }
   };
 
-  createUser = () => {
-    // 2. Enquanto a informação da pessoa usuária é salva, uma mensagem com o texto Carregando... deve aparecer na tela
-    // 3. faça um redirect para a rota /search
-    <Link to="/search">Search</Link>;
+  loginButton = async () => {
+    const { user } = this.state;
+    const { history } = this.props;
+
+    this.setState({ loading: true });
+    await createUser({ name: user });
+    this.setState({ loading: false });
+
+    history.push('/search');
   };
 
   render() {
-    const { isLoginButtonDisabled, user } = this.state;
+    const { isLoginButtonDisabled, user, loading } = this.state;
     return (
       <div data-testid="page-login">
         <input
           type="text"
+          value={ user }
           data-testid="login-name-input"
           onChange={ this.loginNameInput }
         />
@@ -42,13 +50,18 @@ class Login extends React.Component {
           type="button"
           data-testid="login-submit-button"
           disabled={ isLoginButtonDisabled }
-          onClick={ this.createUser({ name: user }) }
+          onClick={ this.loginButton }
         >
           Entrar
         </button>
+        { loading ? <h3>Carregando...</h3> : '' }
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.string,
+}.isRequired;
 
 export default Login;
