@@ -12,10 +12,6 @@ class Search extends React.Component {
     artist: '',
   };
 
-  // componentWillUnmount() {
-  //   this.setState({ usedButtonSearch: false });
-  // }
-
   searchTextInput = (action) => {
     const searchText = action.target.value;
     const maxsearchText = 2;
@@ -42,9 +38,6 @@ class Search extends React.Component {
       searchValue: '',
       searchAlbuns: searchData,
       loading: false,
-    }, () => {
-      const { searchAlbuns } = this.state;
-      console.log(searchAlbuns);
     });
   };
 
