@@ -43,13 +43,13 @@ class Album extends React.Component {
   };
 
   favoriteMusic = async (action) => {
-    const favoriteMusicId = action.target.name;
+    const favoriteMusicData = action.target.name;
     const favoriteMusicValue = action.target.checked;
     this.setState({ loading: true });
     if (favoriteMusicValue) {
-      await addSong(JSON.parse(favoriteMusicId));
+      await addSong(JSON.parse(favoriteMusicData));
     } else {
-      await removeSong(JSON.parse(favoriteMusicId));
+      await removeSong(JSON.parse(favoriteMusicData));
     }
     await this.getFavoriteMusics();
     this.setState({ loading: false });
