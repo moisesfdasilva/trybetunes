@@ -13,15 +13,14 @@ class Album extends React.Component {
     album: '',
     cover: '',
     favorites: '',
-    albumId: '',
   };
 
   async componentDidMount() {
     const { match } = this.props;
     const { params: { id } } = match;
     await this.getAlbumMusics(id);
-    await this.getFavoriteMusics(id);
-    this.setState({ loading: false, albumId: id });
+    await this.getFavoriteMusics();
+    this.setState({ loading: false });
   }
 
   getAlbumMusics = async (id) => {
@@ -38,8 +37,8 @@ class Album extends React.Component {
     });
   };
 
-  getFavoriteMusics = async (id) => {
-    const favoriteMusics = await getFavoriteSongs(id);
+  getFavoriteMusics = async () => {
+    const favoriteMusics = await getFavoriteSongs();
     this.setState({ favorites: favoriteMusics });
   };
 
@@ -47,13 +46,13 @@ class Album extends React.Component {
     const favoriteMusicId = action.target.name;
     const favoriteMusicValue = action.target.checked;
     this.setState({ loading: true });
+    console.log(JSON.parse(favoriteMusicId).trackId);
     if (favoriteMusicValue) {
-      await addSong(favoriteMusicId);
+      await addSong(JSON.parse(favoriteMusicId));
     } else {
-      await removeSong(favoriteMusicId);
+      await removeSong(JSON.parse(favoriteMusicId));
     }
-    const { albumId } = this.state;
-    await this.getFavoriteMusics(albumId);
+    await this.getFavoriteMusics();
     this.setState({ loading: false });
   };
 
@@ -69,9 +68,7 @@ class Album extends React.Component {
         { (!loading) && (musics.map((music, index) => (
           <MusicCard
             key={ index }
-            musicName={ music.trackName }
-            musicRecord={ music.previewUrl }
-            musicId={ music.trackId }
+            musicObject={ music }
             favorites={ favorites }
             favoriteMusic={ this.favoriteMusic }
           />

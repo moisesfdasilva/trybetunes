@@ -3,26 +3,24 @@ import PropTypes from 'prop-types';
 
 class MusicCard extends React.Component {
   render() {
-    const { musicName, musicRecord, musicId,
-      favorites,
-      favoriteMusic,
-    } = this.props;
+    const { musicObject, favorites, favoriteMusic } = this.props;
     return (
       <div>
-        <p>{ musicName }</p>
-        <audio data-testid="audio-component" src={ musicRecord } controls>
+        <p>{ musicObject.trackName }</p>
+        <audio data-testid="audio-component" src={ musicObject.previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento.
           <code>audio</code>
         </audio>
-        <label htmlFor={ musicId }>
+        <label htmlFor={ musicObject.trackId }>
           Favorita
           <input
-            name={ musicId }
+            name={ JSON.stringify(musicObject) }
             type="checkbox"
             onChange={ favoriteMusic }
-            data-testid={ `checkbox-music-${musicId}` }
-            checked={ favorites.some((music) => (music === String(musicId))) }
+            data-testid={ `checkbox-music-${musicObject.trackId}` }
+            checked={ favorites.some((music) => (
+              music.trackId === musicObject.trackId)) }
           />
         </label>
       </div>
@@ -31,9 +29,7 @@ class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
-  musicName: PropTypes.string,
-  musicRecord: PropTypes.string,
-  musicId: PropTypes.string,
+  musicObject: PropTypes.object,
   favorites: PropTypes.array,
   favoriteMusic: PropTypes.func,
 }.isRequired;
