@@ -1,23 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
-  state = {
-    loading: false,
-  };
-
-  favoriteMusic = async (action) => {
-    const favoriteMusicId = action.target.name;
-
-    this.setState({ loading: true });
-    await addSong(favoriteMusicId);
-    this.setState({ loading: false });
-  };
-
   render() {
-    const { musicName, musicRecord, musicId } = this.props;
-    const { loading } = this.state;
+    const { musicName, musicRecord, musicId,
+      favorites,
+      favoriteMusic,
+    } = this.props;
     return (
       <div>
         <p>{ musicName }</p>
@@ -26,16 +15,16 @@ class MusicCard extends React.Component {
           O seu navegador não suporta o elemento.
           <code>audio</code>
         </audio>
-        <label htmlFor="favorite">
+        <label htmlFor={ musicId }>
           Favorita
           <input
             name={ musicId }
             type="checkbox"
-            onChange={ this.favoriteMusic }
+            onChange={ favoriteMusic }
             data-testid={ `checkbox-music-${musicId}` }
+            checked={ favorites.some((music) => (music === String(musicId))) }
           />
         </label>
-        { loading ? <span>Carregando...</span> : '' }
       </div>
     );
   }
@@ -45,6 +34,8 @@ MusicCard.propTypes = {
   musicName: PropTypes.string,
   musicRecord: PropTypes.string,
   musicId: PropTypes.string,
+  favorites: PropTypes.array,
+  favoriteMusic: PropTypes.func,
 }.isRequired;
 
 export default MusicCard;
