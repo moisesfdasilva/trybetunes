@@ -46,7 +46,6 @@ class Album extends React.Component {
     const favoriteMusicId = action.target.name;
     const favoriteMusicValue = action.target.checked;
     this.setState({ loading: true });
-    console.log(JSON.parse(favoriteMusicId).trackId);
     if (favoriteMusicValue) {
       await addSong(JSON.parse(favoriteMusicId));
     } else {
