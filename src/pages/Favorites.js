@@ -19,7 +19,7 @@ class Favorites extends React.Component {
     this.setState({ favorites: favoriteMusics });
   };
 
-  favoriteMusic = async (action) => {
+  removeFavoriteMusic = async (action) => {
     const favoriteMusicData = action.target.name;
     this.setState({ loading: true });
     await removeSong(JSON.parse(favoriteMusicData));
@@ -38,7 +38,7 @@ class Favorites extends React.Component {
             key={ index }
             musicObject={ music }
             favorites={ favorites }
-            favoriteMusic={ this.favoriteMusic }
+            favoriteMusic={ this.removeFavoriteMusic }
           />
         ))) }
       </div>
