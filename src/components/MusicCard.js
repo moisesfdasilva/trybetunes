@@ -15,6 +15,7 @@ class MusicCard extends React.Component {
         <label htmlFor={ musicObject.trackId }>
           Favorita
           <input
+            id={ musicObject.trackId }
             name={ JSON.stringify(musicObject) }
             type="checkbox"
             onChange={ favoriteMusic }
