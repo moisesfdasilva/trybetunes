@@ -1,13 +1,18 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Introdução
+## Sobre o Projeto
+Aplicação que reproduz as músicas das mais variadas bandas e artistas, a qual permite a criação de uma lista de músicas favoritas e edição do perfil da pessoa usuária logada.
+## Tecnologias e Ferramentas empregadas
+JavaScript;
+React JS;
+HTML;
+CSS; e
+React Router DOM.
+## Status do Projeto
+Aplicação em funcionamento.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+# Acesso à Aplicação
+## Instalação e Execução
+Primeiramente deve ser realizado o Fork e o Clone do repositório. Dentro da pasta do repositório realize a instalação das dependências, através do comando npm install, e execute o projeto, através do comando npm start.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Contato
+[GitHub: Repositório-trybetunes](https://github.com/moisesfdasilva/trybetunes)
