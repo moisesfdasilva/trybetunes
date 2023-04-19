@@ -17,7 +17,7 @@ Aplicação em funcionamento.
 
 ## Acesso à Aplicação
 ### Instalação e Execução
-Primeiramente deve ser realizado o Fork e o Clone do repositório. Dentro da pasta do repositório realize a instalação das dependências, através do comando npm install, e execute o projeto, através do comando npm start.
+Primeiramente deve ser realizado o Clone do repositório. Dentro do diretório raiz do repositório realize a instalação das dependências, através do comando npm install, e execute o projeto, através do comando npm start.
 
 ## Contribuintes
 |Nome|GitHub|
